@@ -1,0 +1,13 @@
+{
+    "name": "public",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Jesse Hernandez",
+    "license": "ISC",
+    "description": "simple application using routing as a mechanism to direct to different pages running on the web server we created using Node.js"
+
+}
