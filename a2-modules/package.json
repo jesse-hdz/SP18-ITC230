@@ -1,0 +1,11 @@
+{
+  "name": "a2-modules",
+  "version": "1.0.0",
+  "description": "Application to display and modify a list of items of your choice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesse Hernandez",
+  "license": "ISC"
+}
