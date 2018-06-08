@@ -16,8 +16,8 @@
 
 const express = require('express'),
     handlebars = require('express-handlebars').create({ defaultLayout: 'main' }),
-    parser = require('body-parser');
-var team = require('./views/public/lib/teams.js');
+    parser = require('body-parser'),
+    team = require('./views/public/lib/teams.js');
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.use(require("body-parser").urlencoded({ extended: true })); // parse form su
 
 // Routes
 // home / search bar page
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.render('home');
 });
 
@@ -42,7 +42,7 @@ app.get('/about', (req, res) => {
 });
 
 // Search for teams displayed on home page
-app.post('/search', function(req, res) {
+app.post('/search', (req, res) => {
     let result = team.get(req.body.club.toLowerCase());
 
     if (!(team.get(req.body.club))) {
@@ -76,9 +76,9 @@ app.get('/getall', (req, res) => {
 });
 
 // deletes team if button is clicked on 'details' page
-app.post('/delete', function(req, res) {
+app.post('/delete', (req, res) => {
     let result = team.get(req.body.club);
-    var r = team.delete(result);
+    let r = team.delete(result);
 
     if (!r.deleted) {
         res.send("The Seattle " + JSON.stringify(result, null, 2) + " are not in our records.");
