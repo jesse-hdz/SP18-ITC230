@@ -1,0 +1,30 @@
+<div class="example-1 card">
+    <div class="wrapper" style="background-image: url('/img/home.jpg');">
+      <div class="data">
+        <div class="content">
+          <span class="author">PROFESSIONAL SPORTS TEAMS OF SEATTLE</span>
+          <h1 class="title">Search by Team name:</h1>
+                <form action="/search" method="post">
+                        <input type="text" name="club">
+                        <br/>
+                        <br/>
+                        <input type="submit" value="Search" id="btn">
+                        <br/>
+                </form>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{{!-- <div name="names">
+        <h3>Teams Available:</h3>
+        {{! for loop}}
+        <ul>
+            {{#each teams}}
+                {{! current context value corresponds to each title }}
+                <li>{{club}}</li>
+            {{/each}}
+        </ul>
+</div> --}}
