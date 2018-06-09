@@ -1,5 +1,5 @@
 /**
- * index.js -- a3-express
+ * index.js -- a4-qa
  * Each route invokes the corresponding method in teams.js module 
  * and sends the returned value on the server response.
  *
@@ -9,9 +9,9 @@
  * @see home.handlebars
  * @see details.handlebars
  * @see about.handlebars
+ * @see add.handlebars
  * @see 404.handlebars
  * @see 500.handlebars
- * @todo add 'details.handlebars' to views directory
  */
 
 const express = require('express'),

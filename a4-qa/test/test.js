@@ -1,3 +1,12 @@
+/**
+ * test.js -- a4-qa
+ * Mocha/Chai test cases for application
+ *
+ * @author Jesse Hernandez
+ * @see teams.js
+ * 
+ */
+
 const expect = require("chai").expect,
     team = require("../lib/teams");
 
