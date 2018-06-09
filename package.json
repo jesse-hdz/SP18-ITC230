@@ -1,10 +1,11 @@
 {
-    "name": "a3-express",
+    "name": "a4-qa",
     "version": "1.0.0",
-    "description": "Creating 'search' feature using Express and basic templating to 'list' application",
+    "description": "Adding testing and '/delete' function to application",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha test/test.js",
+        "lint": "eslint index.js"
     },
     "author": "Jesse Hernandez",
     "license": "ISC",
@@ -12,14 +13,12 @@
         "body-parser": "^1.18.3",
         "express": "^4.16.3",
         "express-handlebars": "^3.0.0",
-        "handlebars": "^4.0.11",
-        "nodemon": "^1.17.5",
-        "npm": "^6.1.0",
-        "npm-check-updates": "^2.14.2",
-        "rendr-handlebars": "^1.0.0"
+        "nodejs": "0.0.0"
     },
     "devDependencies": {
         "babel-preset-es2017": "^6.24.1",
-        "babel-preset-latest": "^6.24.1"
+        "babel-preset-latest": "^6.24.1",
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0"
     }
 }

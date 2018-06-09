@@ -1,11 +1,11 @@
-{{#if result}}
-  <div class="example-1 card">
-    <div class="wrapper" style="background-image: url('{{result.image}}');">
+{{#if club}}
+  <div class="card">
+    <div class="wrapper" style="background-image: url('{{image}}');">
       <div class="data">
         <div class="content">
           <span class="author">SEATTLE</span>
-          <h1 class="title">The Seattle {{result.club}}</h1>
-          <p class="text">Sport: {{result.sport}} <br/> Founded: {{result.founded}}</p>
+          <h1 class="title">The Seattle {{club}}</h1>
+          <p class="text">Sport: {{sport}} <br/> Founded: {{founded}}</p>
         </div>
       </div>
     </div>
@@ -14,6 +14,11 @@
     {{club}} not found
 {{/if}}
 
+{{#if add}}
+  Your Team Has Been Added! Thank you!
+    {{else}}
+    No Team Has Been Added. Please Try Again.
+{{/if}}
 {{!-- when clicked takes you back to home/search bar --}}
 <form action="/" method="post">
         <br/>

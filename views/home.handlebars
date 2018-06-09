@@ -2,14 +2,25 @@
     <div class="wrapper" style="background-image: url('/img/home.jpg');">
       <div class="data">
         <div class="content">
-          <span class="author">PROFESSIONAL SPORTS TEAMS OF SEATTLE</span>
+          <span class="author">PROFESSIONAL SPORTS TEAMS OF THE EMERALD CITY</span>
           <h1 class="title">Search by Team name:</h1>
                 <form action="/search" method="post">
-                        <input type="text" name="club">
+                        <input type="text" name="club" placeholder="Team">
                         <br/>
                         <br/>
                         <input type="submit" value="Search" id="btn">
                         <br/>
+                </form>
+                <br/>
+                <br/>
+                <p class="text">Couldn't Find the Team You're Looking For? <br/>
+                Add A Seattle Team:</p>
+                    <form action="/add" method="post">
+                    <input type="text" name="club" id="club" placeholder="Club Name">
+                    <input type="text" name="sport" id="sport" placeholder="Sport of Club">
+                    <input type="number" name="founded" id="founded" value="founded" placeholder="Year Founded">
+                    <br/>
+                    <input type="submit" value="Add" id="btn">
                 </form>
           <br/>
         </div>
@@ -18,13 +29,12 @@
   </div>
 
 
-{{!-- <div name="names">
-        <h3>Teams Available:</h3>
-        {{! for loop}}
-        <ul>
-            {{#each teams}}
-                {{! current context value corresponds to each title }}
-                <li>{{club}}</li>
-            {{/each}}
-        </ul>
-</div> --}}
+
+{{!-- <h3>Teams Available:</h3>
+{{! for loop}}
+<ul>
+    {{#each teams}}
+        {{! current context value corresponds to each title }}
+        <li>{{club}}</li>
+    {{/each}}
+</ul> --}}

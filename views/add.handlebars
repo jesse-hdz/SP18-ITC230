@@ -1,0 +1,22 @@
+{{#if result}}
+  <div class="card">
+    <div class="wrapper" style="background-image: url('/img/home.jpg');"></div>
+      <div class="data">
+        <div class="content">
+          <span class="author">SEATTLE</span>
+          <h1 class="title">The Seattle {{club}}</h1>
+          <p class="text">Sport: {{sport}} <br/> Founded: {{founded}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+    Nothing to add.
+{{/if}}
+
+{{!-- when clicked takes you back to home/search bar --}}
+<form action="/" method="post">
+        <br/>
+        <input type="button" value="Add Another" onclick="window.location = '/';" id="btn">
+        <br/>
+</form>
