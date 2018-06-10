@@ -1,0 +1,42 @@
+{{#if result}}
+  <div class="card">
+    <div class="wrapper" style="background-image: url('{{result.image}}');">
+      <div class="data">
+        <div class="content">
+          <span class="author">SEATTLE</span>
+          <h1 class="title">The Seattle {{result.club}}</h1>
+          <p class="text">Sport: {{result.sport}} <br/> Founded: {{result.founded}}</p>
+          <a href="/delete?title={{result.club}}">Remove Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+    {{club}} not found
+{{/if}}
+
+{{#if add}}
+  {{club}} Has Been Added! Thank you!
+    {{else}}
+    {{club}} Has Not Been Added.
+{{/if}}
+
+{{#if deleted}}
+  {{club}} Has Been Deleted! Thank you!
+    {{else}}
+    {{club}} Has Not Been Deleted.
+{{/if}}
+
+
+{{!-- when clicked takes you back to home/search bar --}}
+<form action="/" method="post">
+        <br/>
+        <input type="button" value="Search Again" onclick="window.location = '/';" id="btn">
+        <br/>
+</form>
+
+{{!-- when clicked deletes current team and directs you to 'delete' page --}}
+<form action="/delete" method="post">
+        <input type="submit" value="Delete" id="btn">
+        
+</form>
