@@ -15,8 +15,7 @@ const express = require('express'),
     handlebars = require('express-handlebars').create({ defaultLayout: 'main' }),
     // parser = require('body-parser'),
     // team = require('./lib/teams.js'),
-    Team = require("./models/Team.js"),
-    teamMethods = require("./teamMethods");
+    Team = require("./models/Team.js");
 
 const app = express();
 
