@@ -15,7 +15,8 @@ const express = require('express'),
     handlebars = require('express-handlebars').create({ defaultLayout: 'main' }),
     // parser = require('body-parser'),
     // team = require('./lib/teams.js'),
-    Team = require("./models/Team.js");
+    Team = require("./models/Team.js"),
+    cors = require('cors');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/views/public')); // set location for static files
-
+app.use(cors());
 app.use(require("body-parser").urlencoded({ extended: true })); // parse form submissions
 
 // API Routes
