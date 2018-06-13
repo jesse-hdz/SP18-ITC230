@@ -8,10 +8,13 @@
  * 
  */
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+    connDB = require('../config.js');
 
 
 // connection to remote database on mLab
+mongoose.connect(connDB);
+
 let conn = mongoose.connection;
 conn.on('error', Error.bind(console, 'connection error:'));
 
