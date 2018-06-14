@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<title>DETAILS</title>
+<style>
+    body {
+        background: #070331;
+        margin: 150px 0;
+        text-align: center;
+        color: #fff;
+        font-family: 'Oswald', sans-serif;
+    }
+    
+    .content {
+        letter-spacing: .2em;
+    }
+</style>
+
+<body>
+    <!--<h1>Team Details</h1>-->
+    <!--{{#if result}}-->
+    <!--<ul>-->
+    <!--    <li>Team: The Seattle {{ result.club }}</li>-->
+    <!--    <li>Sport: {{ result.sport }}</li>-->
+    <!--    <li>Year Founded: {{ result.founded }}</li>-->
+    <!--</ul>-->
+
+    <!--<br />-->
+    <!--<p><a href="./delete?title={{ title }}">Deleted Book</a></p>-->
+    <!--<p><a href="./add?title={{ title }}">Updated Book</a></p>-->
+
+    <!--{{else}}-->
+    <!--<h2>{{title}} not found</h2>-->
+
+    <!--{{/if}}-->
+    <!--<a href="./">Home</a>-->
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class TeamRow extends React.Component {
+          render() {
+            const team = this.props.team;
+            const club = team.approved ?
+              team.club :
+              <span style={color: 'red'}>
+                {team.club}
+              </span>;
+        
+            return (
+              <tr>
+                <td>{club}</td>
+                <td>{team.sport}</td>
+                <td>{team.founded}</td>
+              </tr>
+            );
+          }
+        }
+
+
+        class TeamsTable extends React.Component {
+          render() {
+            
+            const filterText = this.props.filterText;
+            const approvedOnly = this.props.approvedOnly;
+            
+            const rows = [];
+            let lastTeam = null;
+            
+            this.props.teams.forEach((team) => {
+              if(team.club.indexOf(filterText) === -1) {
+                return;
+              }
+              
+              if(approvedOnly && !team.approved) {
+                return;
+              }
+            
+              rows.push(
+                <TeamRow
+                  team={team}
+                  key={team.club} />
+              );
+              lastTeam = team.club;
+            });
+        
+            return (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Club</th>
+                    <th>Sport</th>
+                    <th>Founded</th>
+                  </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+              </table>
+            );
+          }
+        }
+        
+        class SearchBar extends React.Component {
+          constructor(props) {
+            super(props);
+            this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+            this.handleApprovedOnly = this.handleApprovedOnly.bind(this);
+            
+            handleFilterTextChange(e) {
+              this.props.onFilterTextChange(e.target.value);
+            }
+          
+            handleApprovedChange(e) {
+              this.props.onApprovedChange(e.target.checked);
+            }
+          
+          render() {
+            return (
+              <form>
+                <input type="text" placeholder="Team..." value={this.props.filterText} onChange={this.handleFilterTextChange}/>
+                <p>
+                  <input type="checkbox" checked={this.props.approvedOnly} onChange={this.handleApprovedChange}/>
+                  {' '}
+                  Only show teams in application
+                </p>
+              </form>
+            );
+          }
+        }
+        
+        class EntryForm extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {club: '', sport: '', founded: 0, approved: true};
+        
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+          }
+        
+          handleChange(e) {
+            this.setState({club: e.target.club});
+            this.setState({sport: e.target.sport});
+            this.setState({founded: e.target.founded});
+          }
+        
+          handleSubmit(e) {
+            alert('The ' + this.state.club + ' were added! Thank you!');
+            e.preventDefault();
+          }
+        
+          render() {
+            return (
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  Add a Team: <br/>
+                  <input type="text" name="club" value={this.state.club} onChange={this.handleChange} placeholder="Club"/><br/>
+                  <input type="text" name="sport" value={this.state.sport} onChange={this.handleChange} placeholder="Sport"/><br/>
+                  <input type="number" name="founded" value={this.state.founded} onChange={this.handleChange} placeholder="Year Founded"/>
+                </label> <br/>
+                <input type="submit" value="Submit" />
+              </form>
+            );
+          }
+        }
+        
+    const TEAMS = [
+      { club: "Mariners", sport: "Baseball", founded: 1977, approved: true },
+      { club: "Seahawks", sport: "Football", founded: 1974, approved: true },
+      { club: "Seawolves", sport: "Rugby", founded: 2017, approved: true },
+      { club: "Storm", sport: "Women's Basketball", founded: 1999, approved: true },
+      { club: "Reign", sport: "Women's Soccer", founded: 2012, approved: true },
+      { club: "Sounders", sport: "Men's Soccer", founded: 2009, approved: true }
+    ];
+
+    ReactDOM.render(
+      <EntryForm />,
+      document.getElementById('root'));
+
+    </script>
+</body>
+</html>
