@@ -28,4 +28,4 @@ let mySchema = mongoose.Schema({
     approved: Boolean
 });
 
-module.exports = mongoose.model('Team', mySchema);
+module.exports = mongoose.model('teams', mySchema);
