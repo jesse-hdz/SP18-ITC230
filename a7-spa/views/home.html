@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HOME</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        body {
+            background: #070331;
+            margin: 150px 0;
+            text-align: center;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        .content {
+            letter-spacing: .2em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="example-1 card">
+        <div class="wrapper" style="background-image: url('/img/home.jpg');">
+            <div class="data">
+                <div class="content">
+
+                    <span class="author">PROFESSIONAL SPORTS TEAMS OF THE EMERALD CITY</span>
+                    <h1 class="title">Search by Team name:</h1>
+                    <form action="/search" method="post">
+                        <input type="text" name="club" placeholder="Team">
+                        <br/>
+                        <br/>
+                        <input type="submit" value="Search" class="btn">
+                        <br/>
+                    </form>
+                    <br/>
+                    <br/>
+
+
+                    <p class="text">Couldn't Find the Team You're Looking For? <br/> Add A Seattle Team:</p>
+                    <form action="/add" method="post">
+                        <input type="text" name="club" id="club" placeholder="Club Name">
+                        <input type="text" name="sport" id="sport" placeholder="Sport of Club">
+                        <input type="number" name="founded" id="founded" value="founded" placeholder="Year Founded">
+                        <br/>
+                        <input type="submit" value="Add" class="btn">
+                    </form>
+                    <br/>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+
+    class TeamRow extends React.Component {
+      render() {
+        const team = this.props.team;
+        const club = team.approved ?
+          team.club :
+          <span style={color: 'red'}>
+            {team.club}
+          </span>;
+    
+        return (
+          <tr>
+            <td>{club}</td>
+            <td>{team.sport}</td>
+            <td>{team.founded}</td>
+          </tr>
+        );
+      }
+    }
+
+
+    class TeamsTable extends React.Component {
+      render() {
+        
+        const filterText = this.props.filterText;
+        const approvedOnly = this.props.approvedOnly;
+        
+        const rows = [];
+        let lastTeam = null;
+        
+        this.props.teams.forEach((team) => {
+          if(team.club.indexOf(filterText) === -1) {
+            return;
+          }
+          
+          if(approvedOnly && !team.approved) {
+            return;
+          }
+        
+          rows.push(
+            <TeamRow
+              team={team}
+              key={team.club} />
+          );
+          lastTeam = team.club;
+        });
+    
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>Club</th>
+                <th>Sport</th>
+                <th>Founded</th>
+              </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+        );
+      }
+    }
+
+    class SearchBar extends React.Component {
+      constructor(props) {
+        super(props);
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleApprovedOnly = this.handleApprovedOnly.bind(this);
+        
+        handleFilterTextChange(e) {
+          this.props.onFilterTextChange(e.target.value);
+        }
+      
+        handleApprovedChange(e) {
+          this.props.onApprovedChange(e.target.checked);
+        }
+      
+      render() {
+        return (
+          <form>
+            <input type="text" placeholder="Team..." value={this.props.filterText} onChange={this.handleFilterTextChange}/>
+            <p>
+              <input type="checkbox" checked={this.props.approvedOnly} onChange={this.handleApprovedChange}/>
+              {' '}
+              Only show teams in application
+            </p>
+          </form>
+        );
+      }
+    }
+
+    class FilterableTeamTable extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          filterText: '',
+          approvedOnly: false
+        };
+      }
+      
+      this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleApprovedChange = this.handleApprovedChange.bind(this);
+      }
+    
+      handleFilterTextChange(filterText) {
+        this.setState({
+          filterText: filterText
+        });
+      }
+      
+      handleApprovedChange(approvedOnly) {
+        this.setState({
+          approvedOnly: approvedOnly
+        })
+      }
+      
+      render() {
+        return (
+          <div>
+            <SearchBar 
+              filterText={this.state.filterText}
+              approvedOnly={this.state.approvedOnly}
+              onFilterTextChange={this.handleFilterTextChange}
+              onApprovedChange={this.handleApprovedChange}
+            />
+            <TeamTable 
+              teams={this.props.teams} 
+              filterText={this.state.filterText}
+              approvedOnly={this.state.approvedOnly}
+            />
+          </div>
+        );
+      }
+    }
+
+
+    const TEAMS = [
+      { club: "Mariners", sport: "Baseball", founded: 1977, approved: true },
+      { club: "Seahawks", sport: "Football", founded: 1974, approved: true },
+      { club: "Seawolves", sport: "Rugby", founded: 2017, approved: true },
+      { club: "Storm", sport: "Women's Basketball", founded: 1999, approved: true },
+      { club: "Reign", sport: "Women's Soccer", founded: 2012, approved: true },
+      { club: "Sounders", sport: "Men's Soccer", founded: 2009, approved: true }
+    ];
+ 
+    ReactDOM.render(
+      <FilterableTeamTable teams={TEAMS} />,
+      document.getElementById('root'));
+    </script>
+
+
+</body>
+
+</html>

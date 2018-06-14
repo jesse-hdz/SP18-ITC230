@@ -1,0 +1,26 @@
+{
+    "name": "a7-spa",
+    "version": "1.0.0",
+    "description": "Using React by converting part of the app into a single-page application",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha test/test.js",
+        "lint": "eslint index.js"
+    },
+    "author": "Jesse Hernandez",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.3",
+        "express-handlebars": "^3.0.0",
+        "mongodb": "^3.0.10",
+        "mongoose": "^5.1.4",
+        "nodejs": "0.0.0"
+    },
+    "devDependencies": {
+        "babel-preset-es2017": "^6.24.1",
+        "babel-preset-latest": "^6.24.1",
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0"
+    }
+}
