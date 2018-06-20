@@ -130,12 +130,12 @@
         this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
         this.handleApprovedOnly = this.handleApprovedOnly.bind(this);
         
-        handleFilterTextChange(e) {
-          this.props.onFilterTextChange(e.target.value);
+        handleFilterTextChange(error) {
+          this.props.onFilterTextChange(error.target.value);
         }
       
-        handleApprovedChange(e) {
-          this.props.onApprovedChange(e.target.checked);
+        handleApprovedChange(error) {
+          this.props.onApprovedChange(error.target.checked);
         }
       
       render() {
